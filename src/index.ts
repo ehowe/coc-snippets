@@ -9,8 +9,9 @@ import { ProviderManager } from './provider'
 import { SnipmateProvider } from './snipmateProvider'
 import { TextmateProvider } from './textmateProvider'
 import { MassCodeProvider } from './massCodeProvider'
-import { SnippetEditWithSource, UltiSnippetOption, UltiSnipsConfig } from './types'
 import { getSnippetsDirectory, UltiSnippetsProvider } from './ultisnipsProvider'
+import { SniphubProvider } from './sniphubProvider'
+import { SnippetEditWithSource, UltiSnippetOption, UltiSnipsConfig, SniphubConfig } from './types'
 import { sameFile, waitDocument } from './util'
 
 interface API {
@@ -161,6 +162,25 @@ export async function activate(context: ExtensionContext): Promise<API> {
     manager.regist(provider, 'massCode')
 
     subscriptions.push(commands.registerCommand('snippets.editMassCodeSnippets', provider.createSnippet.bind(provider)))
+  }
+
+  if (configuration.get<boolean>('sniphub.enable', false)) {
+    let config: SniphubConfig = {
+      apiUrl: configuration.get<string>('sniphub.apiUrl', ''),
+      apiToken: configuration.get<string>('sniphub.apiToken', ''),
+      username: configuration.get<string>('sniphub.username', ''),
+      password: configuration.get<string>('sniphub.password', ''),
+      extends: merge.recursive(true, {}, filetypeExtends),
+      trace: configuration.get<boolean>('massCode.trace', false),
+      excludes
+    }
+
+    let provider = new SniphubProvider(channel, config)
+
+    manager.regist(provider, 'sniphub')
+
+    subscriptions.push(commands.registerCommand('snippets.getSniphubSnippets', provider.getSnippets.bind(provider)))
+    subscriptions.push(commands.registerCommand('snippets.editSnippets', provider.createSnippet.bind(provider)))
   }
 
   if (configuration.get<boolean>('autoTrigger', true)) {
