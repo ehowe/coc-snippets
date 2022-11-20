@@ -51,6 +51,13 @@ export interface MassCodeConfig extends Config {
   host: string
 }
 
+export interface SniphubConfig extends Config {
+  apiUrl: string
+  apiToken: string
+  username: string
+  password: string
+}
+
 export interface UltiSnipsFile {
   directory: string
   filetype: string

@@ -158,6 +158,36 @@
           "default": false,
           "description": "Trace verbose snippet information."
         },
+        "snippets.sniphub.enable": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable load snippets from Sniphub."
+        },
+        "snippets.sniphub.apiUrl": {
+          "type": "string",
+          "default": "",
+          "description": "URL to Sniphub host."
+        },
+        "snippets.sniphub.apiToken": {
+          "type": "string",
+          "default": "",
+          "description": "Optional API token for restricted sniphub features."
+        },
+        "snippets.sniphub.username": {
+          "type": "string",
+          "default": "",
+          "description": "Optional username for restricted sniphub features."
+        },
+        "snippets.sniphub.password": {
+          "type": "string",
+          "default": "",
+          "description": "Optional password for restricted sniphub features."
+        },
+        "snippets.sniphub.trace": {
+          "type": "boolean",
+          "default": false,
+          "description": "Trace verbose snippet information."
+        },
         "snippets.snipmate.enable": {
           "type": "boolean",
           "default": true,

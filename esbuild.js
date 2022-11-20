@@ -9,7 +9,8 @@ async function start() {
     external: ['coc.nvim'],
     platform: 'node',
     target: 'node10.12',
-    outfile: 'lib/index.js'
+    outfile: 'lib/index.js',
+    watch: process.env.NODE_ENV == 'development'
   })
 }
 

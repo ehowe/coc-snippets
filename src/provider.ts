@@ -91,6 +91,7 @@ export class ProviderManager implements CompletionItemProvider {
           list.push(Object.assign({ source: name }, item))
         }
       } catch (e) {
+        console.log('error in manager', { e })
         this.appendError(`get trigger snippets of ${name}`, e)
       }
     }

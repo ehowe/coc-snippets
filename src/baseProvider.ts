@@ -1,4 +1,4 @@
-import { Document, OutputChannel, Position } from 'coc.nvim'
+import { Document, OutputChannel, Position, workspace } from 'coc.nvim'
 import minimatch from 'minimatch'
 import { Config, Snippet, SnippetEdit } from './types'
 import { distinct } from './util'
@@ -46,6 +46,7 @@ export default abstract class BaseProvider {
       filetypes.push(...filetype.split('.'))
     }
     if (filetype == 'latex') filetypes.push('tex')
+    if (filetype == 'latex') filetypes.push('plaintex')
     if (filetype == 'javascriptreact' && !filetypes.includes('javascript')) {
       filetypes.push('javascript')
     }
